@@ -1,5 +1,8 @@
-package com.coderscampus.lucasbeckerassignment9;
+package com.coderscampus.lucasbeckerassignment9.model;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Recipe {
     private Integer cookingMinutes;
     private Boolean dairyFree;
@@ -11,6 +14,8 @@ public class Recipe {
     private Integer servings;
     private Double spoonacularScore;
     private String title;
+    private Boolean vegan;
+    private Boolean vegetarian;
 
     public Integer getCookingMinutes() {
         return cookingMinutes;
@@ -108,6 +113,21 @@ public class Recipe {
         this.vegetarian = vegetarian;
     }
 
-    private Boolean vegan;
-    private Boolean vegetarian;
+    @Override
+    public String toString() {
+        return "Recipe{" +
+                "cookingMinutes=" + cookingMinutes +
+                ", dairyFree=" + dairyFree +
+                ", glutenFree=" + glutenFree +
+                ", instructions='" + instructions + '\'' +
+                ", preparationMinutes=" + preparationMinutes +
+                ", pricePerServing=" + pricePerServing +
+                ", readyInMinutes=" + readyInMinutes +
+                ", servings=" + servings +
+                ", spoonacularScore=" + spoonacularScore +
+                ", title='" + title + '\'' +
+                ", vegan=" + vegan +
+                ", vegetarian=" + vegetarian +
+                '}';
+    }
 }
