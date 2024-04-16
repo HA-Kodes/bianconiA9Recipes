@@ -4,6 +4,12 @@ import com.coderscampus.lucasbeckerassignment9.model.Recipe;
 import com.coderscampus.lucasbeckerassignment9.repository.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.InvalidPathException;
+import java.nio.file.Paths;
 import java.util.List;
 
 @Service
@@ -53,6 +59,10 @@ public class RecipeService {
 
     public List<Recipe> getVeganRecipes() {
         return recipeRepository.findByVeganTrue();
+    }
+
+    public List<Recipe> getVeganAndGlutenFreeRecipes() {
+        return recipeRepository.findByVeganTrueAndGlutenFreeTrue();
     }
 
 }
