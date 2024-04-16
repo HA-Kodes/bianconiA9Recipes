@@ -1,8 +1,10 @@
 package com.coderscampus.lucasbeckerassignment9.service;
 
+import com.coderscampus.lucasbeckerassignment9.model.Recipe;
 import com.coderscampus.lucasbeckerassignment9.repository.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
 @Service
 public class RecipeService {
@@ -47,6 +49,10 @@ public class RecipeService {
 
     public List<Recipe> getGlutenFreeRecipes() {
         return recipeRepository.findByGlutenFreeTrue();
+    }
+
+    public List<Recipe> getVeganRecipes() {
+        return recipeRepository.findByVeganTrue();
     }
 
 }
