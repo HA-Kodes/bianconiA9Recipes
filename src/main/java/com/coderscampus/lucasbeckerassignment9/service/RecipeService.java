@@ -26,7 +26,7 @@ public class RecipeService {
     }
 
     @PostConstruct
-    public void init() throws IOException {
+    public void init() {
         try {
             List<String> lines = Files.readAllLines(Paths.get("recipes.txt"));
             CSVFormat format = CSVFormat.DEFAULT.builder().setHeader().setDelimiter(',').build();
@@ -50,7 +50,8 @@ public class RecipeService {
 
                 recipeRepository.save(recipe);
             });
-        } catch (IOException | SecurityException | InvalidPathException | NumberFormatException e) {
+        } catch (IOException | SecurityException | InvalidPathException | NumberFormatException |
+                 NullPointerException e) {
             System.err.println(e.getMessage());
         }
     }
