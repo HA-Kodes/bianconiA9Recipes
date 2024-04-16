@@ -9,9 +9,12 @@ public class RecipeService {
     private final RecipeRepository recipeRepository;
 
     @Autowired
-    private RecipeRepository recipeRepository;
     public RecipeService(RecipeRepository recipeRepository) {
         this.recipeRepository = recipeRepository;
+    }
+
+    public List<Recipe> getAllRecipes() {
+        return recipeRepository.findAll();
     }
 
 }
