@@ -32,8 +32,9 @@ public class RecipeService {
             CSVFormat format = CSVFormat.DEFAULT.builder().setHeader().setDelimiter(',').build();
             CSVParser parser = CSVParser.parse(new FileReader("recipes.txt"), format);
             List<CSVRecord> records = parser.getRecords();
-            records.parallelStream().forEach(record -> {
+            records.forEach(record -> {
                 Recipe recipe = new Recipe();
+
                 recipe.setCookingMinutes(Integer.parseInt(record.get("cookingMinutes").trim()));
                 recipe.setDairyFree(Boolean.parseBoolean(record.get("dairyFree").trim()));
                 recipe.setGlutenFree(Boolean.parseBoolean(record.get("glutenFree").trim()));
@@ -46,6 +47,7 @@ public class RecipeService {
                 recipe.setTitle(record.get("title").trim());
                 recipe.setVegan(Boolean.parseBoolean(record.get("vegan").trim()));
                 recipe.setVegetarian(Boolean.parseBoolean(record.get("vegetarian").trim()));
+
                 recipeRepository.save(recipe);
             });
         } catch (IOException | SecurityException | InvalidPathException | NumberFormatException e) {
