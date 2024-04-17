@@ -9,7 +9,10 @@ import java.util.List;
 @Repository
 public interface RecipeRepository extends JpaRepository<Recipe, Long> {
     List<Recipe> findByGlutenFreeTrue();
+
     List<Recipe> findByVeganTrue();
+
     List<Recipe> findByVeganTrueAndGlutenFreeTrue();
+
     List<Recipe> findByVegetarianTrue();
 }
