@@ -1,12 +1,18 @@
 package com.coderscampus.lucasbeckerassignment9.model;
 
-import org.springframework.stereotype.Component;
+import jakarta.persistence.*;
 
-@Component
+import java.util.Objects;
+
+@Entity
 public class Recipe {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private Integer cookingMinutes;
     private Boolean dairyFree;
     private Boolean glutenFree;
+    @Column(length = 4096)
     private String instructions;
     private Double preparationMinutes;
     private Double pricePerServing;
@@ -35,6 +41,31 @@ public class Recipe {
         this.title = title;
         this.vegan = vegan;
         this.vegetarian = vegetarian;
+    @Override
+    public String toString() {
+        return "Recipe{" +
+                "id=" + id +
+                ", cookingMinutes=" + cookingMinutes +
+                ", dairyFree=" + dairyFree +
+                ", glutenFree=" + glutenFree +
+                ", instructions='" + instructions + '\'' +
+                ", preparationMinutes=" + preparationMinutes +
+                ", pricePerServing=" + pricePerServing +
+                ", readyInMinutes=" + readyInMinutes +
+                ", servings=" + servings +
+                ", spoonacularScore=" + spoonacularScore +
+                ", title='" + title + '\'' +
+                ", vegan=" + vegan +
+                ", vegetarian=" + vegetarian +
+                '}';
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Integer getCookingMinutes() {
