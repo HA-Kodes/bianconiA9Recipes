@@ -17,6 +17,16 @@ public class RecipeController {
         this.recipeService = recipeService;
     }
 
+    @GetMapping("/")
+    public String getHomePage() {
+        return "Welcome to the recipes app! You can retrieve data from the following endpoints:\n" +
+                "/gluten-free\n" +
+                "/vegan\n" +
+                "/vegan-and-gluten-free\n" +
+                "/vegetarian\n" +
+                "/all-recipes\n";
+    }
+
     @GetMapping("/gluten-free")
     public List<Recipe> getGlutenFreeRecipes() {
         return recipeService.getGlutenFreeRecipes();
