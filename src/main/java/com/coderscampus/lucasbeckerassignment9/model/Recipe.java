@@ -26,21 +26,33 @@ public class Recipe {
     public Recipe() {
     }
 
-    public Recipe(Integer cookingMinutes, Boolean dairyFree, Boolean glutenFree, String instructions,
-                  Double preparationMinutes, Double pricePerServing, Integer readyInMinutes, Integer servings,
-                  Double spoonacularScore, String title, Boolean vegan, Boolean vegetarian) {
-        this.cookingMinutes = cookingMinutes;
-        this.dairyFree = dairyFree;
-        this.glutenFree = glutenFree;
-        this.instructions = instructions;
-        this.preparationMinutes = preparationMinutes;
-        this.pricePerServing = pricePerServing;
-        this.readyInMinutes = readyInMinutes;
-        this.servings = servings;
-        this.spoonacularScore = spoonacularScore;
-        this.title = title;
-        this.vegan = vegan;
-        this.vegetarian = vegetarian;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Recipe recipe = (Recipe) o;
+        return Objects.equals(getId(), recipe.getId()) &&
+                Objects.equals(getCookingMinutes(), recipe.getCookingMinutes()) &&
+                Objects.equals(getDairyFree(), recipe.getDairyFree()) &&
+                Objects.equals(getGlutenFree(), recipe.getGlutenFree()) &&
+                Objects.equals(getInstructions(), recipe.getInstructions()) &&
+                Objects.equals(getPreparationMinutes(), recipe.getPreparationMinutes()) &&
+                Objects.equals(getPricePerServing(), recipe.getPricePerServing()) &&
+                Objects.equals(getReadyInMinutes(), recipe.getReadyInMinutes()) &&
+                Objects.equals(getServings(), recipe.getServings()) &&
+                Objects.equals(getSpoonacularScore(), recipe.getSpoonacularScore()) &&
+                Objects.equals(getTitle(), recipe.getTitle()) &&
+                Objects.equals(getVegan(), recipe.getVegan()) &&
+                Objects.equals(getVegetarian(), recipe.getVegetarian());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getCookingMinutes(), getDairyFree(), getGlutenFree(), getInstructions(),
+                getPreparationMinutes(), getPricePerServing(), getReadyInMinutes(), getServings(),
+                getSpoonacularScore(), getTitle(), getVegan(), getVegetarian());
+    }
+
     @Override
     public String toString() {
         return "Recipe{" +
@@ -162,23 +174,5 @@ public class Recipe {
 
     public void setVegetarian(Boolean vegetarian) {
         this.vegetarian = vegetarian;
-    }
-
-    @Override
-    public String toString() {
-        return "Recipe{" +
-                "cookingMinutes=" + cookingMinutes +
-                ", dairyFree=" + dairyFree +
-                ", glutenFree=" + glutenFree +
-                ", instructions='" + instructions + '\'' +
-                ", preparationMinutes=" + preparationMinutes +
-                ", pricePerServing=" + pricePerServing +
-                ", readyInMinutes=" + readyInMinutes +
-                ", servings=" + servings +
-                ", spoonacularScore=" + spoonacularScore +
-                ", title='" + title + '\'' +
-                ", vegan=" + vegan +
-                ", vegetarian=" + vegetarian +
-                '}';
     }
 }
