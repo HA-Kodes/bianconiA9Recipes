@@ -24,32 +24,46 @@ public class RecipeService {
 
     @PostConstruct
     public void init() {
+        CSVFormat format = CSVFormat.DEFAULT.builder()
+                .setHeader("Cooking Minutes", "Dairy Free", "Gluten Free", "Instructions", "Preparation Minutes",
+                        "Price Per Serving", "Ready In Minutes", "Servings", "Spoonacular Score", "Title", "Vegan",
+                        "Vegetarian")
+                .setSkipHeaderRecord(true)
+                .setTrim(true)
+                .setQuote('"')
+                .setEscape('\\')
+                .setIgnoreSurroundingSpaces(true)
+                .build();
         try {
-            List<String> lines = Files.readAllLines(Paths.get("recipes.txt"));
-            CSVFormat format = CSVFormat.DEFAULT.builder().setHeader().setDelimiter(',').build();
             CSVParser parser = CSVParser.parse(new FileReader("recipes.txt"), format);
             List<CSVRecord> records = parser.getRecords();
+
             records.forEach(record -> {
-                Recipe recipe = new Recipe();
+                try {
+                    Recipe recipe = new Recipe();
 
-                recipe.setCookingMinutes(Integer.parseInt(record.get("cookingMinutes").trim()));
-                recipe.setDairyFree(Boolean.parseBoolean(record.get("dairyFree").trim()));
-                recipe.setGlutenFree(Boolean.parseBoolean(record.get("glutenFree").trim()));
-                recipe.setInstructions(record.get("instructions").trim());
-                recipe.setPreparationMinutes(Double.parseDouble(record.get("preparationMinutes").trim()));
-                recipe.setPricePerServing(Double.parseDouble(record.get("pricePerServing").trim()));
-                recipe.setReadyInMinutes(Integer.parseInt(record.get("readyInMinutes").trim()));
-                recipe.setServings(Integer.parseInt(record.get("servings").trim()));
-                recipe.setSpoonacularScore(Double.parseDouble(record.get("spoonacularScore").trim()));
-                recipe.setTitle(record.get("title").trim());
-                recipe.setVegan(Boolean.parseBoolean(record.get("vegan").trim()));
-                recipe.setVegetarian(Boolean.parseBoolean(record.get("vegetarian").trim()));
+                    recipe.setCookingMinutes(Integer.parseInt(record.get("Cooking Minutes")));
+                    recipe.setDairyFree(Boolean.parseBoolean(record.get("Dairy Free")));
+                    recipe.setGlutenFree(Boolean.parseBoolean(record.get("Gluten Free")));
+                    recipe.setInstructions(record.get("Instructions"));
+                    recipe.setPreparationMinutes(Double.parseDouble(record.get("Preparation Minutes")));
+                    recipe.setPricePerServing(Double.parseDouble(record.get("Price Per Serving")));
+                    recipe.setReadyInMinutes(Integer.parseInt(record.get("Ready In Minutes")));
+                    recipe.setServings(Integer.parseInt(record.get("Servings")));
+                    recipe.setSpoonacularScore(Double.parseDouble(record.get("Spoonacular Score")));
+                    recipe.setTitle(record.get("Title"));
+                    recipe.setVegan(Boolean.parseBoolean(record.get("Vegan")));
+                    recipe.setVegetarian(Boolean.parseBoolean(record.get("Vegetarian")));
 
-                recipeRepository.save(recipe);
+                    recipeRepository.save(recipe);
+                } catch (NullPointerException | IllegalArgumentException e) {
+                    System.err.println("Error processing record: " + record);
+                    System.err.println(e);
+                }
             });
-        } catch (IOException | SecurityException | InvalidPathException | NumberFormatException |
-                 NullPointerException e) {
-            System.err.println(e.getMessage());
+        } catch (IOException e) {
+            System.err.println("Error while reading and parsing recipes.txt");
+            System.err.println(e);
         }
     }
 
