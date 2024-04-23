@@ -9,6 +9,7 @@ import org.apache.commons.csv.CSVRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
@@ -16,55 +17,18 @@ import java.util.List;
 @Service
 public class RecipeService {
     private final RecipeRepository recipeRepository;
+    private final FileService fileService;
 
     @Autowired
-    public RecipeService(RecipeRepository recipeRepository) {
+    public RecipeService(RecipeRepository recipeRepository, FileService fileService) {
         this.recipeRepository = recipeRepository;
+        this.fileService = fileService;
     }
 
     @PostConstruct
     public void init() {
-        CSVFormat format = CSVFormat.DEFAULT.builder()
-                .setHeader("Cooking Minutes", "Dairy Free", "Gluten Free", "Instructions", "Preparation Minutes",
-                        "Price Per Serving", "Ready In Minutes", "Servings", "Spoonacular Score", "Title", "Vegan",
-                        "Vegetarian")
-                .setSkipHeaderRecord(true)
-                .setTrim(true)
-                .setQuote('"')
-                .setEscape('\\')
-                .setIgnoreSurroundingSpaces(true)
-                .build();
-        try {
-            CSVParser parser = CSVParser.parse(new FileReader("recipes.txt"), format);
-            List<CSVRecord> records = parser.getRecords();
-
-            records.forEach(record -> {
-                try {
-                    Recipe recipe = new Recipe();
-
-                    recipe.setCookingMinutes(Integer.parseInt(record.get("Cooking Minutes")));
-                    recipe.setDairyFree(Boolean.parseBoolean(record.get("Dairy Free")));
-                    recipe.setGlutenFree(Boolean.parseBoolean(record.get("Gluten Free")));
-                    recipe.setInstructions(record.get("Instructions"));
-                    recipe.setPreparationMinutes(Double.parseDouble(record.get("Preparation Minutes")));
-                    recipe.setPricePerServing(Double.parseDouble(record.get("Price Per Serving")));
-                    recipe.setReadyInMinutes(Integer.parseInt(record.get("Ready In Minutes")));
-                    recipe.setServings(Integer.parseInt(record.get("Servings")));
-                    recipe.setSpoonacularScore(Double.parseDouble(record.get("Spoonacular Score")));
-                    recipe.setTitle(record.get("Title"));
-                    recipe.setVegan(Boolean.parseBoolean(record.get("Vegan")));
-                    recipe.setVegetarian(Boolean.parseBoolean(record.get("Vegetarian")));
-
-                    recipeRepository.save(recipe);
-                } catch (NullPointerException | IllegalArgumentException e) {
-                    System.err.println("Error processing record: " + record);
-                    System.err.println(e);
-                }
-            });
-        } catch (IOException e) {
-            System.err.println("Error while reading and parsing recipes.txt");
-            System.err.println(e);
-        }
+        Iterable<Recipe> recipes = fileService.readFile("recipes.txt");
+        recipeRepository.saveAll(recipes);
     }
 
     public List<Recipe> getAllRecipes() {
