@@ -1,13 +1,12 @@
 package com.coderscampus;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootTest
-class BianconiA9RecipesApplicationTests {
+@SpringBootApplication
+public class BianconiA9RecipesApplicationTests {
 
-	@Test
-	void contextLoads() {
+	public static void main(String[] args) {
+		SpringApplication.run(BianconiA9RecipesApplicationTests.class, args);
 	}
-
 }
