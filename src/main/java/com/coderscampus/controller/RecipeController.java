@@ -15,6 +15,7 @@ public class RecipeController {
     @Autowired
     private RecipeService recipeService;
 
+    // Endpoint to get all gluten-free recipes
     @GetMapping("/gluten-free")
     public List<Recipe> getGlutenFreeRecipes() {
         return recipeService.getAllRecipes().stream()
@@ -22,6 +23,7 @@ public class RecipeController {
                 .collect(Collectors.toList());
     }
 
+    // Endpoint to get all vegan recipes
     @GetMapping("/vegan")
     public List<Recipe> getVeganRecipes() {
         return recipeService.getAllRecipes().stream()
@@ -29,6 +31,7 @@ public class RecipeController {
                 .collect(Collectors.toList());
     }
 
+    // Endpoint to get all vegan and gluten-free recipes
     @GetMapping("/vegan-and-gluten-free")
     public List<Recipe> getVeganAndGlutenFreeRecipes() {
         return recipeService.getAllRecipes().stream()
@@ -36,7 +39,7 @@ public class RecipeController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("/vegetarian")
+@GetMapping("/vegetarian")
     public List<Recipe> getVegetarianRecipes() {
         return recipeService.getAllRecipes().stream()
                 .filter(Recipe::isVegetarian)
