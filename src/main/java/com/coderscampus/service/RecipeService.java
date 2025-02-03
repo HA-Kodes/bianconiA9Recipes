@@ -42,12 +42,26 @@ public class RecipeService {
                 .collect(Collectors.toList());
     }
 
+    // Method to format the recipes for better readability
+    public String formatRecipes(List<Recipe> recipes) {
+        StringBuilder formattedOutput = new StringBuilder();
+        for (Recipe recipe : recipes) {
+            formattedOutput.append("Title: ").append(recipe.getTitle()).append("\n")
+                           .append("Cooking Minutes: ").append(recipe.getCookingMinutes()).append("\n")
+                           .append("Dairy Free: ").append(recipe.getDairyFree()).append("\n")
+                           .append("Gluten Free: ").append(recipe.getGlutenFree()).append("\n")
+                           .append("Instructions: ").append(recipe.getInstructions()).append("\n")
+                           .append("Preparation Minutes: ").append(recipe.getPreparationMinutes()).append("\n")
+                           .append("Price Per Serving: ").append(recipe.getPricePerServing()).append("\n")
+                           .append("Ready In Minutes: ").append(recipe.getReadyInMinutes()).append("\n")
+                           .append("Servings: ").append(recipe.getServings()).append("\n")
+                           .append("Spoonacular Score: ").append(recipe.getSpoonacularScore()).append("\n")
+                           .append("Vegan: ").append(recipe.getVegan()).append("\n")
+                           .append("Vegetarian: ").append(recipe.getVegetarian()).append("\n\n");
+        }
+        return formattedOutput.toString();
+    }
+
     public void updateRecipe(Recipe recipe) {
-        // Use setters to update the recipe object
-        recipe.setReadyInMinutes(50);
-        recipe.setServings(5);
-        recipe.setSpoonacularScore(90.0);
-        recipe.setVegan(true);
-        recipe.setVegetarian(true);
     }
 }
