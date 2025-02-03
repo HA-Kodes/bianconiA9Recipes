@@ -4,6 +4,7 @@ import com.coderscampus.model.Recipe;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class RecipeService {
@@ -14,20 +15,31 @@ public class RecipeService {
         Recipe recipe2 = new Recipe(20, false, true, "Blend ingredients", 10.0, 8.0, 30, 2, 90.0, "Vegan Smoothie", true, true);
         Recipe recipe3 = new Recipe(40, true, true, "Bake in oven", 20.0, 12.0, 60, 6, 88.0, "Vegetarian Lasagna", false, true);
 
-        // Use setters to update recipe1
-        recipe1.setCookingMinutes(35);
-        recipe1.setDairyFree(false);
-        recipe1.setPreparationMinutes(20.0);
-        recipe1.setPricePerServing(12.0);
-
-        // Use getters to retrieve values
-        Integer cookingMinutes = recipe1.getCookingMinutes();
-        Boolean isDairyFree = recipe1.getDairyFree();
-        Double preparationMinutes = recipe1.getPreparationMinutes();
-        Double pricePerServing = recipe1.getPricePerServing();
-
-        // Return the list of recipes
         return List.of(recipe1, recipe2, recipe3);
+    }
+
+    public List<Recipe> getGlutenFreeRecipes() {
+        return getAllRecipes().stream()
+                .filter(Recipe::getGlutenFree)
+                .collect(Collectors.toList());
+    }
+
+    public List<Recipe> getVeganRecipes() {
+        return getAllRecipes().stream()
+                .filter(Recipe::getVegan)
+                .collect(Collectors.toList());
+    }
+
+    public List<Recipe> getVeganAndGlutenFreeRecipes() {
+        return getAllRecipes().stream()
+                .filter(recipe -> recipe.getVegan() && recipe.getGlutenFree())
+                .collect(Collectors.toList());
+    }
+
+    public List<Recipe> getVegetarianRecipes() {
+        return getAllRecipes().stream()
+                .filter(Recipe::getVegetarian)
+                .collect(Collectors.toList());
     }
 
     public void updateRecipe(Recipe recipe) {

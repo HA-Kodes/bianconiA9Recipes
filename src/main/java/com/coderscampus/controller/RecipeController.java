@@ -21,6 +21,26 @@ public class RecipeController {
         return recipeService.getAllRecipes();
     }
 
+    @GetMapping("/gluten-free")
+    public List<Recipe> getGlutenFreeRecipes() {
+        return recipeService.getGlutenFreeRecipes();
+    }
+
+    @GetMapping("/vegan")
+    public List<Recipe> getVeganRecipes() {
+        return recipeService.getVeganRecipes();
+    }
+
+    @GetMapping("/vegan-and-gluten-free")
+    public List<Recipe> getVeganAndGlutenFreeRecipes() {
+        return recipeService.getVeganAndGlutenFreeRecipes();
+    }
+
+    @GetMapping("/vegetarian")
+    public List<Recipe> getVegetarianRecipes() {
+        return recipeService.getVegetarianRecipes();
+    }
+
     @PostMapping("/update-recipe")
     public void updateRecipe(@RequestBody Recipe recipe) {
         recipeService.updateRecipe(recipe);
