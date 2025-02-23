@@ -1,13 +1,13 @@
-package com.coderscampus.lucasbeckerassignment9;
+package com.coderscampus.bianconiA9;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class LucasBeckerAssignment9Application {
+public class recipeA9Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(LucasBeckerAssignment9Application.class, args);
+        SpringApplication.run(recipeA9Application.class, args);
     }
 
 }

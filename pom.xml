@@ -9,10 +9,10 @@
         <!--  lookup parent from repository  -->
     </parent>
     <groupId>com.coderscampus</groupId>
-    <artifactId>lucas-becker-assignment-9</artifactId>
+    <artifactId>bianconiA9recipes</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>lucas-becker-assignment-9</name>
-    <description>Lucas Becker's Assignment 9 for Coders Campus</description>
+    <name>recipeA9Application</name>
+    <description>CodersCampus Assignment9</description>
     <properties>
         <java.version>17</java.version>
     </properties>
