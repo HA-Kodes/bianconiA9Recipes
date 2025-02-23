@@ -35,35 +35,3 @@ public class FileService {
         return format.parse(reader);
     }
 }
-//        try {
-//            CSVParser parser = CSVParser.parse(new FileReader(filename), format);
-//            List<CSVRecord> records = parser.getRecords();
-//
-//            records.forEach(record -> {
-//                try {
-//                    Recipe recipe = new Recipe();
-//
-//                    recipe.setCookingMinutes(Integer.parseInt(record.get("Cooking Minutes")));
-//                    recipe.setDairyFree(Boolean.parseBoolean(record.get("Dairy Free")));
-//                    recipe.setGlutenFree(Boolean.parseBoolean(record.get("Gluten Free")));
-//                    recipe.setInstructions(record.get("Instructions"));
-//                    recipe.setPreparationMinutes(Double.parseDouble(record.get("Preparation Minutes")));
-//                    recipe.setPricePerServing(Double.parseDouble(record.get("Price Per Serving")));
-//                    recipe.setReadyInMinutes(Integer.parseInt(record.get("Ready In Minutes")));
-//                    recipe.setServings(Integer.parseInt(record.get("Servings")));
-//                    recipe.setSpoonacularScore(Double.parseDouble(record.get("Spoonacular Score")));
-//                    recipe.setTitle(record.get("Title"));
-//                    recipe.setVegan(Boolean.parseBoolean(record.get("Vegan")));
-//                    recipe.setVegetarian(Boolean.parseBoolean(record.get("Vegetarian")));
-//
-//                    recipeList.add(recipe);
-//                } catch (NullPointerException | IllegalArgumentException e) {
-//                    System.err.println("Error processing record: " + record + "\n" + e);
-//                }
-//            });
-//        } catch (IOException e) {
-//            System.err.println("Error while reading and parsing " + filename + "\n" + e);
-//        }
-//        return recipeList;
-//    }
-//}

@@ -2,7 +2,6 @@ package com.coderscampus.bianconiA9.web;
 
 import com.coderscampus.bianconiA9.domain.Recipe;
 import com.coderscampus.bianconiA9.service.RecipeService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,7 +29,6 @@ public class RecipeController {
     public List<Recipe> getVeganRecipes() {
         return recipeService.getVeganRecipes();
     }
-
 
     @GetMapping("/vegan-and-gluten-free")
     public List<Recipe> getVeganAndGlutenFreeRecipes() {

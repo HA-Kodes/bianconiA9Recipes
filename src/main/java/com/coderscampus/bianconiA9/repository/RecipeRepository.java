@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RecipeRepository {
-    private List<Recipe> recipes = new ArrayList<>();
+    private final List<Recipe> recipes = new ArrayList<>();
 
     @Autowired
     private FileService fileService;
@@ -51,7 +51,7 @@ public class RecipeRepository {
         List<Recipe> filteredRecipes = new ArrayList<>();
 
         for (Recipe recipe : recipes) {
-            if (recipe.getGlutenFree()) { // Your filtering condition
+            if (recipe.getGlutenFree()) {
                 filteredRecipes.add(recipe);
             }
         }
@@ -63,7 +63,7 @@ public class RecipeRepository {
        List<Recipe> filteredRecipes = new ArrayList<>();
 
         for (Recipe recipe : recipes) {
-            if (recipe.getVegan()) { // Your filtering condition
+            if (recipe.getVegan()) {
                 filteredRecipes.add(recipe);
             }
         }
