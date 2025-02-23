@@ -4,33 +4,33 @@ For this assignment, you’ll need to ingest a recipe.txt file and store this in
 
 When parsing the text file, you should store the data in the following POJO:
 
-public class Recipe {
-     private Integer cookingMinutes;
-     private Boolean dairyFree;
-     private Boolean glutenFree;
-     private String instructions;
-     private Double preparationMinutes;
-     private Double pricePerServing;
-     private Integer readyInMinutes;
-     private Integer servings;
-     private Double spoonacularScore;
-     private String title;
-     private Boolean vegan;
-     private Boolean vegetarian;
-
-     // INSERT GETTERS & SETTERS HERE
-
-}
+public class Recipe {<br>
+     private Integer cookingMinutes;<br>
+     private Boolean dairyFree;<br>
+     private Boolean glutenFree;<br>
+     private String instructions;<br>
+     private Double preparationMinutes;<br>
+     private Double pricePerServing;<br>
+     private Integer readyInMinutes;<br>
+     private Integer servings;<br>
+     private Double spoonacularScore;<br>
+     private String title;<br>
+     private Boolean vegan;<br>
+     private Boolean vegetarian;<br>
+<br>
+     // INSERT GETTERS & SETTERS HERE<br>
+<br>
+}<br>
  
 Once you’ve ingested the recipe.txt file and stored the resulting POJOs into a Collection, your next task is to create “endpoints” inside of a RestController that will filter this data.
  
 You should implement the following endpoints:
 
-@GetMapping("/gluten-free")
-@GetMapping("/vegan")
-@GetMapping("/vegan-and-gluten-free")
-@GetMapping("/vegetarian")
-@GetMapping("/all-recipes")
+@GetMapping("/gluten-free")<br>
+@GetMapping("/vegan")<br>
+@GetMapping("/vegan-and-gluten-free")<br>
+@GetMapping("/vegetarian")<br>
+@GetMapping("/all-recipes")<br>
  
 The “all-recipes” endpoint will not filter the data at all and should return the full Collection.
 The “gluten-free” endpoint will only return a subset of the full Collection where glutenFree is true
